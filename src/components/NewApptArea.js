@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 import { closeApptArea, openApptArea } from '../actions/index'
 import NewForm from './NewForm'
 
@@ -10,7 +11,7 @@ const NewApptArea = ({showNewAppt, closeApptArea, openApptArea}) =>{
     )
   }
   return (
-    <button onClick={openApptArea}>New</button>
+    <Button bsStyle="primary" onClick={openApptArea}>New</Button>
   )
 }
 

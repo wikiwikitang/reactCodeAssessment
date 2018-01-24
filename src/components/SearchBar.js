@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from 'react-bootstrap';
 import { searchAppt, closeApptArea } from "../actions/index";
 import { connect } from "react-redux";
 
@@ -35,7 +36,7 @@ class SearchBar extends Component {
           value={this.state.content}
           onChange={this.handleOnChange}
         />
-        <button onClick={this.submitSearch}>Search</button>
+        <Button onClick={this.submitSearch}>Search</Button>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Table } from 'react-bootstrap';
 
 const SearchResult = ({ searchResult }) => {
   const renderTableBody = searchResult => {
@@ -29,14 +30,12 @@ const SearchResult = ({ searchResult }) => {
   };
 
   return (
-    <div>
-      <table>
-        {renderTableHeader(searchResult)}
-        <tbody>
-          {renderTableBody(searchResult)}
-        </tbody>
-      </table>
-    </div>
+    <Table striped bordered condensed hover>
+      {renderTableHeader(searchResult)}
+      <tbody>
+        {renderTableBody(searchResult)}
+      </tbody>
+    </Table>
   );
 };
 

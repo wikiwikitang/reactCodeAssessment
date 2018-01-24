@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
+import { Button } from 'react-bootstrap';
 import { addAppt, closeApptArea } from '../actions/index'
 
 const validate = (values)=>{
@@ -47,8 +48,8 @@ class newForm extends Component{
     const { closeApptArea, handleSubmit } = this.props
     return(
       <form onSubmit={handleSubmit(this.submitData)}>
-        <button type="submit">Add</button>
-        <button onClick={closeApptArea} style={Btnstyle}>Cancel</button>
+        <Button type="submit">Add</Button>
+        <Button onClick={closeApptArea} style={Btnstyle}>Cancel</Button>
         <Field name="date" type="date" component={renderField} label="DATE"/>
         <Field name="time" type="time" component={renderField} label="TIME"/>
         <Field name="description" type="text" component={renderField} label="DESC"/>
