@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Button } from 'react-bootstrap';
+import { Button, FormControl} from 'react-bootstrap';
+import { btnStyleInSearchBar, searchBarStyle, displayFlex } from '../style/index'
 import { searchAppt, closeApptArea } from "../actions/index";
 import { connect } from "react-redux";
 
@@ -17,6 +18,9 @@ class SearchBar extends Component {
     });
   };
 
+  //submit the search keyword
+  //set the flag to close the new appointment form
+  //set the local state for storing input to empty;
   submitSearch = () => {
     console.log("call the searchAPI");
     this.props.closeApptArea();
@@ -29,14 +33,16 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <div>
-        <input
+      <div style={displayFlex}>
+        <FormControl
           type="text"
+          componentClass='input'
           placeholder="Type to Search"
+          style={searchBarStyle}
           value={this.state.content}
           onChange={this.handleOnChange}
         />
-        <Button onClick={this.submitSearch}>Search</Button>
+        <Button bsStyle="primary" style={btnStyleInSearchBar} onClick={this.submitSearch}>Search</Button>
       </div>
     );
   }

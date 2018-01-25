@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Table } from 'react-bootstrap';
+import { tableStyle } from '../style/index'
 
+//Show the search result coming from the backend API
+//use map to generate the table data
 const SearchResult = ({ searchResult }) => {
   const renderTableBody = searchResult => {
     return searchResult.map((ele, idx) => {
@@ -15,6 +18,7 @@ const SearchResult = ({ searchResult }) => {
     });
   };
 
+  //if get the valid search results, show the table heading
   const renderTableHeader = searchResult => {
     if (searchResult.length > 0) {
       return (
@@ -30,7 +34,7 @@ const SearchResult = ({ searchResult }) => {
   };
 
   return (
-    <Table striped bordered condensed hover>
+    <Table striped bordered condensed hover style={tableStyle}>
       {renderTableHeader(searchResult)}
       <tbody>
         {renderTableBody(searchResult)}

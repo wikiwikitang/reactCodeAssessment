@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { Button } from 'react-bootstrap';
 import { addAppt, closeApptArea } from '../actions/index'
+import { Button, Panel, FormGroup, ControlLabel } from 'react-bootstrap';
+import { btnStyleInForm, errorStyle } from '../style/index'
 
+//sync validate the input data
 const validate = (values)=>{
-  const errors = {}
+  const errors = {};
+
+  //the appointment date should be late than today
   if(!values.date){
     errors.date = "Required"
   }else if(new Date(values.date) < new Date()){
@@ -16,29 +20,29 @@ const validate = (values)=>{
     errors.time = "Required"
   }
 
+  //if the description should not be empty or blank and only tab or space
   if(!values.description || values.description.trim().length === 0){
     errors.description = "Required"
   }
-  return errors
+
+  return errors;
 }
 
 const renderField = ({ input, label, type, meta: { touched, error}}) => (
-  <div>
-    <label>{label}</label>
+  <FormGroup>
+    <ControlLabel>{label}</ControlLabel>
     <div>
       <input {...input} placeholder={label} type={type}/>
-      <div style={{ marginBottom: '20px' }}>
+      <div style={errorStyle}>
         {touched && (error && <span>{error}</span>)}
       </div>
     </div>
-  </div>
+  </FormGroup>
 )
 
-const Btnstyle = {
-  marginLeft: '10px'
-}
-
 class newForm extends Component{
+
+  //submit the data to backend and reset the form
   submitData = (values) => {
     this.props.addAppt(values);
     this.props.reset('newForm');
@@ -47,13 +51,20 @@ class newForm extends Component{
   render(){
     const { closeApptArea, handleSubmit } = this.props
     return(
-      <form onSubmit={handleSubmit(this.submitData)}>
-        <Button type="submit">Add</Button>
-        <Button onClick={closeApptArea} style={Btnstyle}>Cancel</Button>
-        <Field name="date" type="date" component={renderField} label="DATE"/>
-        <Field name="time" type="time" component={renderField} label="TIME"/>
-        <Field name="description" type="text" component={renderField} label="DESC"/>
-      </form>
+      <Panel>
+        <Panel.Heading>Add A New Appointment</Panel.Heading>
+        <Panel.Body>
+          <form onSubmit={handleSubmit(this.submitData)}>
+            <FormGroup>
+              <Button bsStyle="primary" type="submit">Add</Button>
+              <Button bsStyle="danger" style={btnStyleInForm} onClick={closeApptArea} >Cancel</Button>
+            </FormGroup>
+            <Field name="date" type="date" component={renderField} label="DATE"/>
+            <Field name="time" type="time" component={renderField} label="TIME"/>
+            <Field name="description" type="text" component={renderField} label="DESC"/>
+          </form>
+        </Panel.Body>
+      </Panel>
     )
   }
 }

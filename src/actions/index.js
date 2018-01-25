@@ -8,7 +8,7 @@ export const addAppt = values => async dispatch => {
   const res = await addAppointment(values);
   dispatch({
     type: add_appt_succeed,
-    payload: res
+    payload: values
   });
 };
 
