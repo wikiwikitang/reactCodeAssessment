@@ -4,7 +4,7 @@ let fakeDatabase = [
   {date: "2018-01-29", time: "09:09", description: "test desc"}
 ];
 
-
+//use setTimeout and promise simulate the backend API
 export const getAppointments = (value) =>{
   let ret = [];
   if(!value || value.trim().length === 0){
@@ -23,6 +23,7 @@ export const getAppointments = (value) =>{
     }, 500);
   })
 };
+
 
 export const addAppointment = (value) =>{
   fakeDatabase.push(value);
