@@ -5,7 +5,7 @@ import { closeApptArea, openApptArea } from '../actions/index'
 import { btnStyle, isDisplayNone } from '../style/index'
 import NewForm from './NewForm'
 
-//condition rendering the New Button or New Appointment Form
+//use showNewAppt as flag to switch to display New Button or New Appointment Form
 //use ES6 style destructing the props
 const NewApptArea = ({showNewAppt, closeApptArea, openApptArea}) =>{
 
