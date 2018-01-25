@@ -1,3 +1,10 @@
+export const isDisplayNone = (flag) =>{
+  return {
+    display: flag ? '': 'none'
+  }
+}
+
+
 export const tableStyle = {
   marginTop: '10px',
   marginLeft: '15px'

@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
 import { addAppt, closeApptArea } from '../actions/index'
 import { Button, Panel, FormGroup, ControlLabel } from 'react-bootstrap';
-import { btnStyleInForm, errorStyle } from '../style/index'
+import { btnStyleInForm, errorStyle, isDisplayNone } from '../style/index'
 
 //sync validate the input data
 const validate = (values)=>{
@@ -49,9 +49,9 @@ class newForm extends Component{
   }
 
   render(){
-    const { closeApptArea, handleSubmit } = this.props
+    const { closeApptArea, isShow, handleSubmit } = this.props
     return(
-      <Panel>
+      <Panel style={isDisplayNone(isShow)}>
         <Panel.Heading>Add A New Appointment</Panel.Heading>
         <Panel.Body>
           <form onSubmit={handleSubmit(this.submitData)}>
